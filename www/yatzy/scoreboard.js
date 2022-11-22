@@ -42,8 +42,8 @@ document.getElementById('score-board').addEventListener('click', (event) =>{
     }
     document.getElementById('roll-btn').disabled = true
     document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
-    resetRoll()
     fillScore(boxId, score)
+    resetRoll()
 })
 
 function checkUpper(boxId){

@@ -1,4 +1,4 @@
-let rolls = 0
+let rollsLeft = 3
 
 document.getElementById('roll-btn').addEventListener('click', (e) => {
     document.getElementById('roll-btn').disabled = true
@@ -36,8 +36,8 @@ function sleep(ms) {
 }
 
 async function rollDice(){
-    rolls += 1
-    document.getElementById('roll-num').innerHTML = 'Roll number: ' + rolls
+    rollsLeft -= 1
+    document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     let dice = document.getElementById('roll-dice')
     for (let i = 0; i < 3; i++){
         for (let child of dice.children){
@@ -47,7 +47,7 @@ async function rollDice(){
             await sleep(100) //await to create rolling die animation/illusion
         }
     }
-    if(rolls != 3){
+    if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
     //manipulated dice prep for testing
@@ -75,8 +75,8 @@ function resetDie(){
 
 export async function resetRoll(){
     await sleep(700)
-    rolls = 0
+    rollsLeft = 3
     document.getElementById('roll-btn').disabled = false
-    document.getElementById('roll-num').innerHTML = 'Roll number: ' + rolls
+    document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     resetDie()
 }
