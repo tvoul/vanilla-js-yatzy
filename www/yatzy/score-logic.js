@@ -44,6 +44,20 @@ export function fourKind(){
     return score
 }
 
+export function fullHouse(){
+    let values = getDiceValues()
+    let score = 0
+    let valueOccurence = []
+    for(let i = 1; i < 7; i++){
+        valueOccurence.push(values.filter(x => x==i).length)
+    }
+    if(valueOccurence.includes(2) && valueOccurence.includes(3)){
+        score = (valueOccurence.indexOf(2) + 1)*2
+        score += (valueOccurence.indexOf(3) + 1)*3
+    }
+    return score
+}
+
 export function straight(value){
     let values = getDiceValues()
     let score = 0

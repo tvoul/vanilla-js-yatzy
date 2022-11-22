@@ -50,11 +50,14 @@ async function rollDice(){
     if(rolls != 3){
         document.getElementById('roll-btn').disabled = false
     }
-    // let value = 1
+    //manipulated dice prep for testing
+    // let values = [3,3,4,4,4]
+    // let i = -1
     // let dice = document.getElementById('roll-dice')
     // for (let child of dice.children){
-    //     //value += 1
-    //     document.getElementById(child.id).innerHTML = value
+    //     i += 1
+    //     let value = values[i]
+    //     document.getElementById(child.id).innerHTML = values[i]
     //     document.getElementById(child.id).style.backgroundImage = `url(dice/${value}.png)`
     // }
 }

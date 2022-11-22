@@ -1,6 +1,6 @@
 import {resetRoll} from './dice.js'
 import './score-logic.js'
-import { upper, threeKind, fourKind, straight, chance, yahtzee } from './score-logic.js'
+import { upper, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
 let lowerScore = ['3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
@@ -71,6 +71,8 @@ function checkLower(boxId){
         case '3 of a kind' : score = threeKind()
             break
         case '4 of a kind' : score = fourKind()
+            break
+        case 'Full house' : score = fullHouse()
             break
         case 'Small straight': score = straight('small')
             break
