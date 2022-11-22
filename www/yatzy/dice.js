@@ -50,6 +50,13 @@ async function rollDice(){
     if(rolls != 3){
         document.getElementById('roll-btn').disabled = false
     }
+    // let value = 1
+    // let dice = document.getElementById('roll-dice')
+    // for (let child of dice.children){
+    //     //value += 1
+    //     document.getElementById(child.id).innerHTML = value
+    //     document.getElementById(child.id).style.backgroundImage = `url(dice/${value}.png)`
+    // }
 }
 
 function resetDie(){

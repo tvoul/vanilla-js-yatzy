@@ -1,9 +1,9 @@
 import {resetRoll} from './dice.js'
 import './score-logic.js'
-import { upper } from './score-logic.js'
+import { upper, straight, chance, yahtzee } from './score-logic.js'
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
-let lowerScore = ['One pair', 'Two pair', '3 of a kind', '4 of a kind', 'Sm straight', 'Lg straight', 'Full house', 'Chance', 'Yahtzee']
+let lowerScore = ['3 of a kind', '4 of a kind', 'Sm straight', 'Lg straight', 'Full house', 'Chance', 'Yahtzee']
 
 function drawUpper(){
     let html = '<table id="upper-table"><tr><th>Upper section</th><th>Score</th></tr>'
@@ -33,17 +33,17 @@ document.getElementById('score-board').addEventListener('click', (event) =>{
     }
     let boxId = clickedBox.id
     let table = event.target.closest('table').id
-    let total = 0
+    let score = 0
     if (table == 'upper-table'){
-        total = checkUpper(boxId)
+        score = checkUpper(boxId)
     }
     else if (table == 'lower-table'){
-        total = checkLower(boxId)
+        score = checkLower(boxId)
     }
     document.getElementById('roll-btn').disabled = true
     document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
     resetRoll()
-    fillScore(boxId,total)
+    fillScore(boxId, score)
 })
 
 function checkUpper(boxId){
@@ -65,7 +65,20 @@ function checkUpper(boxId){
     return score
 }
 
-
+function checkLower(boxId){
+    let score = 0
+    switch(boxId){
+        case 'Sm straight': score = straight('small')
+            break
+        case 'Lg straight': score = straight('large')
+            break
+        case 'Yahtzee': score = yahtzee()
+            break
+        case 'Chance': score = chance()
+            break
+    }
+    return score
+}
 
 function fillScore(target, sum){
     let scoreBox = document.getElementById(target).querySelector('td:nth-child(2)')
