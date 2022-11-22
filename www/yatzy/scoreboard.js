@@ -6,7 +6,7 @@ let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
 let lowerScore = ['One pair', 'Two pair', '3 of a kind', '4 of a kind', 'Sm straight', 'Lg straight', 'Full house', 'Chance', 'Yahtzee']
 
 function drawUpper(){
-    let html = '<table><tr><th>Upper section</th><th>Score</th></tr>'
+    let html = '<table id="upper-table"><tr><th>Upper section</th><th>Score</th></tr>'
     for(let i = 0; i < upperScore.length; i++){
         html += `<tr id="${upperScore[i]}" class="score-row"><td><button>${upperScore[i]}</button></td> <td></td></tr>`
     }
@@ -17,7 +17,7 @@ function drawUpper(){
 }
 
 function drawLower(){
-    let html = '<table><tr><th>Lower section</th><th>Score</th></tr>'
+    let html = '<table id="lower-table"><tr><th>Lower section</th><th>Score</th></tr>'
     for(let i = 0; i < lowerScore.length; i++){
         html += `<tr id="${lowerScore[i]}" class="score-row"><td><button>${lowerScore[i]}</button></td> <td></td></tr>`
     }
@@ -32,36 +32,40 @@ document.getElementById('score-board').addEventListener('click', (event) =>{
         return
     }
     let boxId = clickedBox.id
-    let total = checkScore(boxId)
+    let table = event.target.closest('table').id
+    let total = 0
+    if (table == 'upper-table'){
+        total = checkUpper(boxId)
+    }
+    else if (table == 'lower-table'){
+        total = checkLower(boxId)
+    }
     document.getElementById('roll-btn').disabled = true
+    document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
     resetRoll()
     fillScore(boxId,total)
 })
 
-function checkScore(boxId){
-    let dice = document.getElementsByClassName('die-box')
-    let values = []
-    for(let die of dice){
-        let value = die.innerHTML
-        values.push(parseInt(value))
-    }
-    let total = 0
+function checkUpper(boxId){
+    let score = 0
     switch(boxId){
-        case 'Aces': total = upper(1 ,values, boxId)
+        case 'Aces': score = upper(1)
             break
-        case 'Twos': total = upper(2 ,values, boxId)
+        case 'Twos': score = upper(2)
             break
-        case 'Threes': total = upper(3 ,values, boxId)
+        case 'Threes': score = upper(3)
             break
-        case 'Fours': total = upper(4 ,values, boxId)
+        case 'Fours': score = upper(4)
             break
-        case 'Fives': total = upper(5 ,values, boxId)
+        case 'Fives': score = upper(5)
             break
-        case 'Sixes': total = upper(6 ,values, boxId)
+        case 'Sixes': score = upper(6)
             break
     }
-    return(total)
+    return score
 }
+
+
 
 function fillScore(target, sum){
     let scoreBox = document.getElementById(target).querySelector('td:nth-child(2)')
