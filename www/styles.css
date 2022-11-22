@@ -70,4 +70,10 @@ table, th, td {
   background-color: #ddd;
 }
 
+#score-board{
+  position: fixed;
+  bottom: 0;
+  right: 30%;
+}
+
 

@@ -1,16 +1,16 @@
 import {resetRoll} from './dice.js'
 import './score-logic.js'
-import { upper, straight, chance, yahtzee } from './score-logic.js'
+import { upper, threeKind, fourKind, straight, chance, yahtzee } from './score-logic.js'
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
-let lowerScore = ['3 of a kind', '4 of a kind', 'Sm straight', 'Lg straight', 'Full house', 'Chance', 'Yahtzee']
+let lowerScore = ['3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
 
 function drawUpper(){
     let html = '<table id="upper-table"><tr><th>Upper section</th><th>Score</th></tr>'
     for(let i = 0; i < upperScore.length; i++){
         html += `<tr id="${upperScore[i]}" class="score-row"><td><button>${upperScore[i]}</button></td> <td></td></tr>`
     }
-    html += `<tr id="upper-total"><td>Upper</td><td>50</td></tr>
+    html += `<tr id="upper-total"><td>Upper</td><td>0</td></tr>
              <tr id="bonus"><td>Bonus</td><td>0</td></tr>`
     html += '</table>'
     document.getElementById('upper-score').innerHTML = html
@@ -68,9 +68,13 @@ function checkUpper(boxId){
 function checkLower(boxId){
     let score = 0
     switch(boxId){
-        case 'Sm straight': score = straight('small')
+        case '3 of a kind' : score = threeKind()
             break
-        case 'Lg straight': score = straight('large')
+        case '4 of a kind' : score = fourKind()
+            break
+        case 'Small straight': score = straight('small')
+            break
+        case 'Large straight': score = straight('large')
             break
         case 'Yahtzee': score = yahtzee()
             break

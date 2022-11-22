@@ -9,6 +9,41 @@ export function upper(value){
     return score
 }
 
+export function threeKind(){
+    let values = getDiceValues()
+    let score = 0
+    let valueOccurence = []
+    for(let i = 1; i < 7; i++){
+        valueOccurence.push(values.filter(x => x==i).length)
+    }
+    if(valueOccurence.includes(3)){
+        score = (valueOccurence.indexOf(3) + 1)*3
+    }
+    else if(valueOccurence.includes(4)){
+        score = (valueOccurence.indexOf(4) + 1)*3
+    }
+    else if(valueOccurence.includes(5)){
+        score = (valueOccurence.indexOf(5) + 1)*3
+    }
+    return score
+}
+
+export function fourKind(){
+    let values = getDiceValues()
+    let score = 0
+    let valueOccurence = []
+    for(let i = 1; i < 7; i++){
+        valueOccurence.push(values.filter(x => x==i).length)
+    }
+    if(valueOccurence.includes(4)){
+        score = (valueOccurence.indexOf(4) + 1)*4
+    }
+    else if(valueOccurence.includes(5)){
+        score = (valueOccurence.indexOf(5) + 1)*4
+    }
+    return score
+}
+
 export function straight(value){
     let values = getDiceValues()
     let score = 0
