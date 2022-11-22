@@ -1,0 +1,73 @@
+body{
+    background-color: rgb(255, 245, 230);
+    text-align: center;
+}
+
+.dice {
+    justify-content: center;
+    display: flex;
+}
+
+.die-box {
+  color: transparent;
+  margin: 7px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    )
+}
+
+#roll-btn{
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#score-board{
+  justify-content: center;
+  display: flex;
+}
+
+#score-board div{
+  margin: 1rem
+}
+
+#score-board button{
+  margin: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  height: 2rem;
+  width: 4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+table{
+  height: 20rem;
+  width: 15rem;
+}
+
+table, th, td {
+  border: 1px solid;
+  margin: 1rem;
+  border-collapse: collapse;
+}
+
+#score-board tr:hover {
+  background-color: #ddd;
+}
+
+

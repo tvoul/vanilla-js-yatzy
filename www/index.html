@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hello world </h1>
+    <div id="game-board">
+        <div id="roll-dice" class="dice">
+            <div class="die-box" id="i1"></div>
+            <div class="die-box" id="i2"></div>
+            <div class="die-box" id="i3"></div>
+            <div class="die-box" id="i4"></div>
+            <div class="die-box" id="i5"></div>
+        </div>
+        <h5 id="roll-num"></h5>
+        <button id="roll-btn">Roll!</button>
+        <div id="keep-dice" class="dice">
+        </div>
+    </div>
+    <div id="score-board">
+        <div id="upper-score"></div>
+        <div id="lower-score">
+        </div>
+    </div>
+
+    
+    <script type="module" src="dice.js"></script>
+    <script type="module" src="scoreboard.js"></script>
+    <script type="module" src="score-logic.js"></script>
+</body>
+</html>
