@@ -1,6 +1,6 @@
 import {resetRoll} from './dice.js'
 import './score-logic.js'
-import { aces, twos, threes, fours, fives, sixes } from './score-logic.js'
+import { upper } from './score-logic.js'
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
 let lowerScore = ['One pair', 'Two pair', '3 of a kind', '4 of a kind', 'Sm straight', 'Lg straight', 'Full house', 'Chance', 'Yahtzee']
@@ -47,17 +47,17 @@ function checkScore(boxId){
     }
     let total = 0
     switch(boxId){
-        case 'Aces': total = aces(values, boxId)
+        case 'Aces': total = upper(1 ,values, boxId)
             break
-        case 'Twos': total = twos(values, boxId)
+        case 'Twos': total = upper(2 ,values, boxId)
             break
-        case 'Threes': total = threes(values, boxId)
+        case 'Threes': total = upper(3 ,values, boxId)
             break
-        case 'Fours': total = fours(values, boxId)
+        case 'Fours': total = upper(4 ,values, boxId)
             break
-        case 'Fives': total = fives(values, boxId)
+        case 'Fives': total = upper(5 ,values, boxId)
             break
-        case 'Sixes': total = sixes(values, boxId)
+        case 'Sixes': total = upper(6 ,values, boxId)
             break
     }
     return(total)
