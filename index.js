@@ -1,6 +1,6 @@
 import express from 'express'
 const app = express()
-const port = 8000
+const port = 8001
 
 app.use(express.static('www'));
 

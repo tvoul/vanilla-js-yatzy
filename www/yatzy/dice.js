@@ -58,16 +58,6 @@ async function rollDice(){
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
-    //manipulated dice prep for testing
-    // let values = [3,3,4,4,4]
-    // let i = -1
-    // let dice = document.getElementById('roll-dice')
-    // for (let child of dice.children){
-    //     i += 1
-    //     let value = values[i]
-    //     document.getElementById(child.id).innerHTML = values[i]
-    //     document.getElementById(child.id).style.backgroundImage = `url(dice/${value}.png)`
-    // }
 }
 
 function resetDie(){
