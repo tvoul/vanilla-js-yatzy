@@ -39,12 +39,20 @@ async function rollDice(){
     rollsLeft -= 1
     document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     let dice = document.getElementById('roll-dice')
-    for (let i = 0; i < 3; i++){
-        for (let child of dice.children){
+    let diceToShuffle = []
+    //get diceIds to randomize order before rolling
+    //otherwise dice always roll left to right (id 1 to id 5)
+    for (let i = 0; i < dice.children.length; i++){
+        diceToShuffle.push(dice.children[i].id)
+    }
+    for (let x = 0; x < 4; x++){
+        //shuffle the dice multiple times to create illusion of real roll
+        let shuffledDice = diceToShuffle.sort((a, b) => 0.5 - Math.random());
+        for(let i = 0; i < dice.children.length;i++){
             let value = Math.floor(Math.random() * 6) + 1
-            document.getElementById(child.id).innerHTML = value
-            document.getElementById(child.id).style.backgroundImage = `url(dice/${value}.png)`
-            await sleep(100) //await to create rolling die animation/illusion
+            document.getElementById(dice.children[shuffledDice[i]].id).innerHTML = value
+            document.getElementById(dice.children[shuffledDice[i]].id).style.backgroundImage = `url(dice/${value}.png)`
+            await sleep(100) //await to create rolling die animation
         }
     }
     if(rollsLeft != 0){
