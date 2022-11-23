@@ -1,5 +1,4 @@
 import {resetRoll} from './dice.js'
-import './score-logic.js'
 import { upper, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
