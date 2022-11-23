@@ -1,6 +1,34 @@
 import {resetRoll} from './dice.js'
 import { upper, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
 
+document.getElementById('score-board').addEventListener('click', (event) =>{
+    let clickedBox = event.target.closest('.score-row')
+    if(!clickedBox){
+        return
+    }
+    let boxId = clickedBox.id
+    let table = event.target.closest('table').id
+    let score = 0
+    if (table == 'upper-table'){
+        score = checkUpper(boxId)
+    }
+    else if (table == 'lower-table'){
+        score = checkLower(boxId)
+    }
+    document.getElementById('roll-btn').disabled = true
+    document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
+    fillScore(boxId, score)
+    resetRoll(700)
+})
+
+document.getElementById('reset-btn').addEventListener('click', (event) =>{
+    document.getElementById('upper-table').remove()
+    document.getElementById('lower-table').remove()
+    drawUpper()
+    drawLower()
+    resetRoll(0)
+})
+
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
 let lowerScore = ['3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
 
@@ -24,26 +52,6 @@ function drawLower(){
     html += '</table>'
     document.getElementById('lower-score').innerHTML = html
 }
-
-document.getElementById('score-board').addEventListener('click', (event) =>{
-    let clickedBox = event.target.closest('.score-row')
-    if(!clickedBox){
-        return
-    }
-    let boxId = clickedBox.id
-    let table = event.target.closest('table').id
-    let score = 0
-    if (table == 'upper-table'){
-        score = checkUpper(boxId)
-    }
-    else if (table == 'lower-table'){
-        score = checkLower(boxId)
-    }
-    document.getElementById('roll-btn').disabled = true
-    document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
-    fillScore(boxId, score)
-    resetRoll()
-})
 
 function checkUpper(boxId){
     let score = 0

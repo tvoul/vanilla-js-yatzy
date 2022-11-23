@@ -73,8 +73,8 @@ function resetDie(){
     document.getElementById('roll-dice').innerHTML = html
 }
 
-export async function resetRoll(){
-    await sleep(700)
+export async function resetRoll(ms){
+    await sleep(ms)
     rollsLeft = 3
     document.getElementById('roll-btn').disabled = false
     document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
