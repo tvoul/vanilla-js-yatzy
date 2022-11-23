@@ -62,14 +62,16 @@ export function straight(value){
     let values = getDiceValues()
     let score = 0
     let diceTotal = 0
+    let smallStraight = [1,2,3,4,5]
+    let largeStraight = [2,3,4,5,6]
     for(let elem of values){
         diceTotal += elem
     }
     let sorted = values.sort()
-    if(value == 'small' && sorted[0] == 1 && sorted[4] == 5 && diceTotal == 15){
+    if(value == 'small' && sorted.toString() === smallStraight.toString()){
         score = 15
     }
-    if(value == 'large' && sorted[0] == 2 && sorted[4] == 6 && diceTotal == 20){
+    if(value == 'large' && sorted.toString() === largeStraight.toString()){
         score = 20
     }
     return score
