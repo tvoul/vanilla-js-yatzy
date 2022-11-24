@@ -1,5 +1,5 @@
 import {resetRoll} from './dice.js'
-import { upper, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
+import { upper, onePair, twoPair, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
 
 document.getElementById('score-board').addEventListener('click', (event) =>{
     let clickedBox = event.target.closest('.score-row')
@@ -30,7 +30,7 @@ document.getElementById('reset-btn').addEventListener('click', (event) =>{
 })
 
 let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
-let lowerScore = ['3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
+let lowerScore = ['One pair', 'Two pair','3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
 
 function drawUpper(){
     let html = '<table id="upper-table"><tr><th>Upper section</th><th>Score</th></tr>'
@@ -75,15 +75,19 @@ function checkUpper(boxId){
 function checkLower(boxId){
     let score = 0
     switch(boxId){
+        case 'One pair': score = onePair()
+            break
+        case 'Two pair': score = twoPair()
+            break
         case '3 of a kind' : score = threeKind()
             break
         case '4 of a kind' : score = fourKind()
             break
         case 'Full house' : score = fullHouse()
             break
-        case 'Small straight': score = straight('small')
+        case 'Small straight': score = straight(boxId)
             break
-        case 'Large straight': score = straight('large')
+        case 'Large straight': score = straight(boxId)
             break
         case 'Yahtzee': score = yahtzee()
             break
