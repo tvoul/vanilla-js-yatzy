@@ -109,7 +109,7 @@ function updateTotal(){
             total += parseInt(value)
         }
     }
-    bonus = document.getElementById('bonus').querySelector('td:nth-child(2)').innerHTML
+    let bonus = document.getElementById('bonus').querySelector('td:nth-child(2)').innerHTML
     total += parseInt(bonus)
     document.getElementById('total').querySelector('td:nth-child(2)').innerHTML = total
 }

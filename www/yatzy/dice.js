@@ -6,6 +6,9 @@ document.getElementById('roll-btn').addEventListener('click', (e) => {
 })
 
 document.getElementById('roll-dice').addEventListener('click', (event) => {
+    if(rollsLeft == 3){
+        return
+    }
     moveDie(event, 'keep-dice')
 })
 
