@@ -7,36 +7,51 @@ export function evaluate(){
 
     //suggest yatzy, 4 & 3 of a kind sequentially
     let maxOccurence = Math.max(...valueOccurence)
-    if(maxOccurence == 5 && !document.getElementById('Yahtzee').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('Yahtzee').style.background = 'green'
+    if(maxOccurence > 1){
+        pairs(maxOccurence)
     }
-    else if(maxOccurence > 3 && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('4 of a kind').style.background = 'green'
+
+    if((valueOccurence.filter(x => x==2).length) == 2){
+        highLight('Two pair')
     }
-    else if(maxOccurence > 2 && !document.getElementById('3 of a kind').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('3 of a kind').style.background = 'green'
-    }
-    else if(maxOccurence == 2 && !document.getElementById('3 of a kind').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('One pair').style.background = 'green'
+
+    if(valueOccurence.includes(2) && valueOccurence.includes(3)){
+        highLight('Full house')
     }
 
     //suggest small or large straight if match
     let smallStraight = [1,2,3,4,5]
     let largeStraight = [2,3,4,5,6]
     let sorted = values.sort()
-    if(sorted.toString() === smallStraight.toString() && !document.getElementById('Small straight').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('Small straight').style.background = 'green'
+    if(sorted.toString() === smallStraight.toString()){
+        highLight('Small straight')
     }
-    if(sorted.toString() === largeStraight.toString() && !document.getElementById('Large straight').querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById('Large straight').style.background = 'green'
+
+    if(sorted.toString() === largeStraight.toString()){
+        highLight('Large straight')
     }
 }
 
+function pairs(maxOccurence){
+    if(maxOccurence == 5){
+        highLight('Yahtzee')
+    }
+    else if(maxOccurence > 3){
+        highLight('4 of a kind')
+    }
+    else if(maxOccurence > 2){
+        highLight('3 of a kind')
+    }
+    else if(maxOccurence == 2){
+        highLight('One pair')
+    }
+}
 
-
-
-
-
+function highLight(boxId){
+    if(!document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled){
+        document.getElementById(boxId).style.background = 'green'
+    }
+}
 
 function getDiceValues(){
     let dice = document.getElementsByClassName('die-box')
