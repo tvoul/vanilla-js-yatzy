@@ -16,11 +16,9 @@ Rules: \
 
 In my home country, One pair and Two pair is also an option, so that was added :)
 
-<img src="https://user-images.githubusercontent.com/90894009/203942088-df196692-e0ed-42f2-9899-a7e3f6f5d024.png" width="500" />
+## Evaluation
 
-## Dev
-
-If you are brave enough to try out the Dev branch you will also find scoring tips. The dice are evaluated and suggestions are made. It will prioritize the upper section, since you get a bonus if the upper score is above 63. \
+The dice are evaluated and suggestions are made. It will prioritize the upper section, since you get a bonus if the upper score is above 63. \
 \
 *Note that this is not a strategically optimal way to play, just suggestions :)*
 
