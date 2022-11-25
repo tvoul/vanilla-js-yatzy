@@ -100,6 +100,7 @@ function checkLower(boxId){
 function fillScore(targetRow, sum){
     let scoreBox = document.getElementById(targetRow).querySelector('td:nth-child(2)')
     scoreBox.innerHTML = sum
+    repaint()
     updateUpper()
     updateTotal()
 }
@@ -131,6 +132,15 @@ function updateUpper(){
         document.getElementById('bonus').querySelector('td:nth-child(2)').innerHTML = '50'
     }
     document.getElementById('upper-total').querySelector('td:nth-child(2)').innerHTML = upperTotal
+}
+
+export function repaint(){
+    for(let i = 0; i < upperBoard.length; i++){
+        document.getElementById(upperBoard[i]).style.background = 'rgb(255, 245, 230)'
+    }
+    for(let i = 0; i < lowerBoard.length; i++){
+        document.getElementById(lowerBoard[i]).style.background = 'rgb(255, 245, 230)'
+    }
 }
 
 drawUpper()

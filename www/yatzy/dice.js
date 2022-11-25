@@ -1,3 +1,6 @@
+import {repaint} from './scoreboard.js'
+import {evaluate} from './scoring-tips.js'
+
 let rollsLeft = 3
 let rolling = true
 
@@ -43,39 +46,40 @@ function sleep(ms) {
 
 async function rollDice(){
     rollsLeft -= 1
+    repaint()
     document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     let dice = document.getElementById('roll-dice')
     let diceToShuffle = []
     //get diceIds to randomize order before rolling
     //otherwise dice always roll left to right (id 1 to id 5)
-    for (let i = 0; i < dice.children.length; i++){
-        diceToShuffle.push(dice.children[i].id)
-    }
-    for (let x = 0; x < 4; x++){
-        //shuffle the dice multiple times to create illusion of real roll
-        let shuffledDice = diceToShuffle.sort((a, b) => 0.5 - Math.random());
-        for(let i = 0; i < dice.children.length;i++){
-            let value = Math.floor(Math.random() * 6) + 1
-            document.getElementById(dice.children[shuffledDice[i]].id).innerHTML = value
-            document.getElementById(dice.children[shuffledDice[i]].id).style.backgroundImage = `url(dice/${value}.png)`
-            await sleep(100) //await to create rolling die animation
-        }
-    }
-
-    // manipulated die prep for testing
+    // for (let i = 0; i < dice.children.length; i++){
+    //     diceToShuffle.push(dice.children[i].id)
+    // }
     // for (let x = 0; x < 4; x++){
+    //     //shuffle the dice multiple times to create illusion of real roll
     //     let shuffledDice = diceToShuffle.sort((a, b) => 0.5 - Math.random());
-    //     let values = [1,6,6,6,6]
     //     for(let i = 0; i < dice.children.length;i++){
-    //         let value = values[i]
+    //         let value = Math.floor(Math.random() * 6) + 1
     //         document.getElementById(dice.children[shuffledDice[i]].id).innerHTML = value
     //         document.getElementById(dice.children[shuffledDice[i]].id).style.backgroundImage = `url(dice/${value}.png)`
-    //         await sleep(0)
+    //         await sleep(100) //await to create rolling die animation
     //     }
     // }
+
+    // manipulated die prep for testing
+    for (let x = 0; x < 4; x++){
+        let values = [2,2,2,1,4]
+        for(let i = 0; i < dice.children.length;i++){
+            let value = values[i]
+            document.getElementById(dice.children[i].id).innerHTML = value
+            document.getElementById(dice.children[i].id).style.backgroundImage = `url(dice/${value}.png)`
+            await sleep(0)
+        }
+    }
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
+    evaluate()
     rolling = false
 }
 
@@ -89,6 +93,8 @@ function resetDie(){
     document.getElementById('keep-dice').innerHTML = ''
     document.getElementById('roll-dice').innerHTML = html
 }
+
+
 
 export async function resetRoll(ms){
     await sleep(ms)
