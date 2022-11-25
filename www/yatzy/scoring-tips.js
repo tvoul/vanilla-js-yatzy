@@ -1,3 +1,6 @@
+let chances = ['One pair','3 of a kind', '4 of a kind', 'Yahtzee']
+
+
 export function evaluate(){
     let values = getDiceValues()
     let valueOccurence = []
@@ -7,8 +10,10 @@ export function evaluate(){
 
     //suggest yatzy, 4 & 3 of a kind sequentially
     let maxOccurence = Math.max(...valueOccurence)
-    if(maxOccurence > 1){
-        pairs(maxOccurence)
+    for (let i = 4; i > 0; i--){
+        if(maxOccurence > i){
+            highLight(chances[i - 1])
+        }
     }
 
     if((valueOccurence.filter(x => x==2).length) == 2){
@@ -29,21 +34,6 @@ export function evaluate(){
 
     if(sorted.toString() === largeStraight.toString()){
         highLight('Large straight')
-    }
-}
-
-function pairs(maxOccurence){
-    if(maxOccurence == 5){
-        highLight('Yahtzee')
-    }
-    else if(maxOccurence > 3){
-        highLight('4 of a kind')
-    }
-    else if(maxOccurence > 2){
-        highLight('3 of a kind')
-    }
-    else if(maxOccurence == 2){
-        highLight('One pair')
     }
 }
 
