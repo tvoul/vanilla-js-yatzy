@@ -1,5 +1,5 @@
 import {resetRoll} from './dice.js'
-import { upper, onePair, twoPair, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
+import { upperScore, onePair, twoPair, threeKind, fourKind, fullHouse, straight, chance, yahtzee } from './score-logic.js'
 
 document.getElementById('score-board').addEventListener('click', (event) =>{
     let clickedBox = event.target.closest('.score-row')
@@ -15,7 +15,7 @@ document.getElementById('score-board').addEventListener('click', (event) =>{
     else if (table == 'lower-table'){
         score = checkLower(boxId)
     }
-    document.getElementById('roll-btn').disabled = true
+    document.getElementById('roll-btn').disabled = true //cause lag, to indicate next round
     document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled = true
     fillScore(boxId, score)
     resetRoll(700)
@@ -29,13 +29,13 @@ document.getElementById('reset-btn').addEventListener('click', (event) =>{
     resetRoll(0)
 })
 
-let upperScore = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
-let lowerScore = ['One pair', 'Two pair','3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
+let upperBoard = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
+let lowerBoard = ['One pair', 'Two pair','3 of a kind', '4 of a kind', 'Small straight', 'Large straight', 'Full house', 'Chance', 'Yahtzee']
 
 function drawUpper(){
     let html = '<table id="upper-table"><tr><th>Upper section</th><th>Score</th></tr>'
-    for(let i = 0; i < upperScore.length; i++){
-        html += `<tr id="${upperScore[i]}" class="score-row"><td><button>${upperScore[i]}</button></td> <td></td></tr>`
+    for(let i = 0; i < upperBoard.length; i++){
+        html += `<tr id="${upperBoard[i]}" class="score-row"><td><button>${upperBoard[i]}</button></td> <td></td></tr>`
     }
     html += `<tr id="upper-total"><td>Upper</td><td>0</td></tr>
              <tr id="bonus"><td>Bonus</td><td>0</td></tr>`
@@ -45,8 +45,8 @@ function drawUpper(){
 
 function drawLower(){
     let html = '<table id="lower-table"><tr><th>Lower section</th><th>Score</th></tr>'
-    for(let i = 0; i < lowerScore.length; i++){
-        html += `<tr id="${lowerScore[i]}" class="score-row"><td><button>${lowerScore[i]}</button></td> <td></td></tr>`
+    for(let i = 0; i < lowerBoard.length; i++){
+        html += `<tr id="${lowerBoard[i]}" class="score-row"><td><button>${lowerBoard[i]}</button></td> <td></td></tr>`
     }
     html += '<tr id="total"><td>Total</td><td>0</td></tr>'
     html += '</table>'
@@ -56,17 +56,17 @@ function drawLower(){
 function checkUpper(boxId){
     let score = 0
     switch(boxId){
-        case 'Aces': score = upper(1)
+        case 'Aces': score = upperScore(1)
             break
-        case 'Twos': score = upper(2)
+        case 'Twos': score = upperScore(2)
             break
-        case 'Threes': score = upper(3)
+        case 'Threes': score = upperScore(3)
             break
-        case 'Fours': score = upper(4)
+        case 'Fours': score = upperScore(4)
             break
-        case 'Fives': score = upper(5)
+        case 'Fives': score = upperScore(5)
             break
-        case 'Sixes': score = upper(6)
+        case 'Sixes': score = upperScore(6)
             break
     }
     return score
@@ -97,8 +97,8 @@ function checkLower(boxId){
     return score
 }
 
-function fillScore(target, sum){
-    let scoreBox = document.getElementById(target).querySelector('td:nth-child(2)')
+function fillScore(targetRow, sum){
+    let scoreBox = document.getElementById(targetRow).querySelector('td:nth-child(2)')
     scoreBox.innerHTML = sum
     updateUpper()
     updateTotal()

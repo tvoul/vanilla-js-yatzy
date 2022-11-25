@@ -1,9 +1,9 @@
-export function upper(dieValue){
+export function upperScore(scoringOption){
     let values = getDiceValues()
     let score = 0
     for(let elem of values){
-        if (elem == dieValue){
-            score += dieValue
+        if (elem == scoringOption){
+            score += scoringOption
         }
     }
     return score
@@ -81,16 +81,16 @@ export function fullHouse(){
     return score
 }
 
-export function straight(name){
+export function straight(scoringOption){
     let values = getDiceValues()
     let score = 0
     let smallStraight = [1,2,3,4,5]
     let largeStraight = [2,3,4,5,6]
     let sorted = values.sort()
-    if(name == 'Small straight' && sorted.toString() === smallStraight.toString()){
+    if(scoringOption == 'Small straight' && sorted.toString() === smallStraight.toString()){
         score = 15
     }
-    if(name == 'Large straight' && sorted.toString() === largeStraight.toString()){
+    if(scoringOption == 'Large straight' && sorted.toString() === largeStraight.toString()){
         score = 20
     }
     return score
@@ -101,6 +101,9 @@ export function chance(){
     let score = 0
     for(let elem of values){
         score += elem
+    }
+    if(isNaN(score)){
+        score = 0
     }
     return score
 }
