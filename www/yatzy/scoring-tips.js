@@ -1,54 +1,65 @@
-let chances = ['One pair','3 of a kind', '4 of a kind', 'Yahtzee']
+import { upperScore, onePair, twoPair, threeKind, fourKind, fullHouse, straight, yahtzee } from './score-logic.js'
 
+
+let chances = ['Aces', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes']
 
 export function evaluate(){
-    let values = getDiceValues()
-    let valueOccurence = []
-    for(let i = 1; i < 7; i++){
-        valueOccurence.push(values.filter(x => x==i).length)
-    }
-
-    //suggest yatzy, 4 & 3 of a kind sequentially
-    let maxOccurence = Math.max(...valueOccurence)
-    for (let i = 4; i > 0; i--){
-        if(maxOccurence > i){
-            highLight(chances[i - 1])
+    let suggestedChoice = ''
+    let maxScore = 0
+    //4 ones score = 4
+    //1 six score = 6
+    //4 ones is better than 1 six
+    //therefore we cannot only assess by score
+    //we also need to check how often a number occurs
+    let occurence = 0
+    for(let i = 0; i < chances.length; i++){
+        let tempScore = upperScore(i+1)
+        let tempOccurence = tempScore/(i+1)
+        if(maxScore < tempScore && occurence < tempOccurence && !document.getElementById(chances[i]).querySelector('td:nth-child(1) > button').disabled){
+            maxScore = tempScore
+            occurence = tempOccurence
+            suggestedChoice = chances[i]
         }
     }
-
-    if((valueOccurence.filter(x => x==2).length) == 2){
-        highLight('Two pair')
+    console.log(occurence)
+    if(occurence != 3){
+        let tempScore = onePair()
+        if(maxScore <= tempScore && !document.getElementById('One pair').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'One pair'
+        }
+        tempScore = twoPair()
+        if(maxScore < tempScore  && !document.getElementById('Two pair').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'Two pair'
+        }
+        tempScore = threeKind()
+        if(maxScore < tempScore  && !document.getElementById('3 of a kind').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = '3 of a kind'
+        }
+        tempScore = fourKind()
+        if(maxScore <= tempScore  && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = '4 of a kind'
+        }
+        tempScore = straight('Small straight')
+        if(maxScore < tempScore  && !document.getElementById('Small straight').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'Small straight'
+        }
+        tempScore = straight('Large straight')
+        if(maxScore < tempScore  && !document.getElementById('Large straight').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'Large straight'
+        }
+        tempScore = fullHouse()
+        if(maxScore < tempScore  && !document.getElementById('Full house').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'Full house'
+        }
+        tempScore = yahtzee()
+        if(maxScore < tempScore  && !document.getElementById('Yahtzee').querySelector('td:nth-child(1) > button').disabled){
+            suggestedChoice = 'Yahtzee'
+        }
     }
-
-    if(valueOccurence.includes(2) && valueOccurence.includes(3)){
-        highLight('Full house')
+    if(suggestedChoice){
+        document.getElementById(suggestedChoice).style.background = 'green'
     }
-
-    //suggest small or large straight if match
-    let smallStraight = [1,2,3,4,5]
-    let largeStraight = [2,3,4,5,6]
-    let sorted = values.sort()
-    if(sorted.toString() === smallStraight.toString()){
-        highLight('Small straight')
+    else if(!document.getElementById('Chance').querySelector('td:nth-child(1) > button').disabled){
+        document.getElementById('Chance').style.background = 'green'
     }
-
-    if(sorted.toString() === largeStraight.toString()){
-        highLight('Large straight')
-    }
-}
-
-function highLight(boxId){
-    if(!document.getElementById(boxId).querySelector('td:nth-child(1) > button').disabled){
-        document.getElementById(boxId).style.background = 'green'
-    }
-}
-
-function getDiceValues(){
-    let dice = document.getElementsByClassName('die-box')
-    let values = []
-    for(let die of dice){
-        let value = die.innerHTML
-        values.push(parseInt(value))
-    }
-    return values
 }
