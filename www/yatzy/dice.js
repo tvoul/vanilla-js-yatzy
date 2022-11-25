@@ -1,3 +1,6 @@
+import {evaluate} from './scoring-tips.js'
+import {repaint} from './scoreboard.js'
+
 let rollsLeft = 3
 let rolling = true
 
@@ -43,6 +46,7 @@ function sleep(ms) {
 
 async function rollDice(){
     rollsLeft -= 1
+    repaint()
     document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     let dice = document.getElementById('roll-dice')
     let diceToShuffle = []
@@ -64,18 +68,18 @@ async function rollDice(){
 
     // manipulated die prep for testing
     // for (let x = 0; x < 4; x++){
-    //     let shuffledDice = diceToShuffle.sort((a, b) => 0.5 - Math.random());
-    //     let values = [1,6,6,6,6]
+    //     let values = [6,6,6,6,6]
     //     for(let i = 0; i < dice.children.length;i++){
     //         let value = values[i]
-    //         document.getElementById(dice.children[shuffledDice[i]].id).innerHTML = value
-    //         document.getElementById(dice.children[shuffledDice[i]].id).style.backgroundImage = `url(dice/${value}.png)`
+    //         document.getElementById(dice.children[i].id).innerHTML = value
+    //         document.getElementById(dice.children[i].id).style.backgroundImage = `url(dice/${value}.png)`
     //         await sleep(0)
     //     }
     // }
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
+    evaluate()
     rolling = false
 }
 
@@ -89,6 +93,8 @@ function resetDie(){
     document.getElementById('keep-dice').innerHTML = ''
     document.getElementById('roll-dice').innerHTML = html
 }
+
+
 
 export async function resetRoll(ms){
     await sleep(ms)
