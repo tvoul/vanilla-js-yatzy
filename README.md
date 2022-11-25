@@ -20,7 +20,7 @@ In my home country, One pair and Two pair is also an option, so that was added :
 
 ## Dev
 
-If you are brave enough to try out the Dev branch you will also find scoring tips. The dice are evaluated and suggestions are made. It will prioritize the upper section, since you get a bonus if the upper score is above 63.
-*note that this is not a strategically optimal way to play, just suggestions :)*
+If you are brave enough to try out the Dev branch you will also find scoring tips. The dice are evaluated and suggestions are made. It will prioritize the upper section, since you get a bonus if the upper score is above 63. \
+*Note that this is not a strategically optimal way to play, just suggestions :)*
 
 <img src="https://user-images.githubusercontent.com/90894009/203974323-f731a0ea-bbef-468a-b191-5b4c40e5bf41.png" width="500" />
