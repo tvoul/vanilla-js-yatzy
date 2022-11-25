@@ -21,7 +21,7 @@ export function evaluate(){
             suggestedChoice = chances[i]
         }
     }
-    console.log(occurence)
+
     if(occurence != 3){
         let tempScore = onePair()
         if(maxScore <= tempScore && !document.getElementById('One pair').querySelector('td:nth-child(1) > button').disabled){
@@ -56,6 +56,7 @@ export function evaluate(){
             suggestedChoice = 'Yahtzee'
         }
     }
+    
     if(suggestedChoice){
         document.getElementById(suggestedChoice).style.background = 'green'
     }
