@@ -1,11 +1,17 @@
 let rollsLeft = 3
+let rolling = true
 
 document.getElementById('roll-btn').addEventListener('click', (e) => {
     document.getElementById('roll-btn').disabled = true
+    rolling = true
     rollDice()
 })
 
 document.getElementById('roll-dice').addEventListener('click', (event) => {
+    //block dice from being moved before roll
+    if(rollsLeft == 3){
+        return
+    }
     moveDie(event, 'keep-dice')
 })
 
@@ -16,7 +22,7 @@ document.getElementById('keep-dice').addEventListener('click', (event) => {
 
 function moveDie(event, location){
     let clickedBox = event.target.closest('.die-box')
-    if(!clickedBox){
+    if(!clickedBox || rolling){
         return
     }
     let id = clickedBox.getAttribute('id')
@@ -55,9 +61,22 @@ async function rollDice(){
             await sleep(100) //await to create rolling die animation
         }
     }
+
+    // manipulated die prep for testing
+    // for (let x = 0; x < 4; x++){
+    //     let shuffledDice = diceToShuffle.sort((a, b) => 0.5 - Math.random());
+    //     let values = [1,6,6,6,6]
+    //     for(let i = 0; i < dice.children.length;i++){
+    //         let value = values[i]
+    //         document.getElementById(dice.children[shuffledDice[i]].id).innerHTML = value
+    //         document.getElementById(dice.children[shuffledDice[i]].id).style.backgroundImage = `url(dice/${value}.png)`
+    //         await sleep(0)
+    //     }
+    // }
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
+    rolling = false
 }
 
 function resetDie(){
