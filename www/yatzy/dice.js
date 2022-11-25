@@ -1,13 +1,15 @@
 let rollsLeft = 3
+let rolling = true
 
 document.getElementById('roll-btn').addEventListener('click', (e) => {
     document.getElementById('roll-btn').disabled = true
+    rolling = true
     rollDice()
 })
 
 document.getElementById('roll-dice').addEventListener('click', (event) => {
-    //block dice from being moved before roll
-    if(rollsLeft == 3){
+    //block dice from being moved before and during roll
+    if(rollsLeft == 3 || rolling){
         return
     }
     moveDie(event, 'keep-dice')
@@ -74,6 +76,7 @@ async function rollDice(){
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
+    rolling = false
 }
 
 function resetDie(){
