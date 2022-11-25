@@ -135,6 +135,9 @@ function updateUpper(){
 }
 
 export function repaint(){
+    for(let i = 0; i < upperBoard.length; i++){
+        document.getElementById(upperBoard[i]).style.background = 'rgb(255, 245, 230)'
+    }
     for(let i = 0; i < lowerBoard.length; i++){
         document.getElementById(lowerBoard[i]).style.background = 'rgb(255, 245, 230)'
     }

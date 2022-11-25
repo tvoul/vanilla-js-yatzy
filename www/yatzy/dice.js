@@ -1,5 +1,6 @@
 import {evaluate} from './scoring-tips.js'
 import {repaint} from './scoreboard.js'
+import {highScore} from './highest-score.js'
 
 let rollsLeft = 3
 let rolling = true
@@ -68,7 +69,7 @@ async function rollDice(){
 
     // manipulated die prep for testing
     // for (let x = 0; x < 4; x++){
-    //     let values = [6,6,6,6,6]
+    //     let values = [5,5,3,5,6]
     //     for(let i = 0; i < dice.children.length;i++){
     //         let value = values[i]
     //         document.getElementById(dice.children[i].id).innerHTML = value
@@ -79,7 +80,8 @@ async function rollDice(){
     if(rollsLeft != 0){
         document.getElementById('roll-btn').disabled = false
     }
-    evaluate()
+    //evaluate()
+    highScore()
     rolling = false
 }
 
