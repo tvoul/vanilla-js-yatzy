@@ -11,12 +11,15 @@ Dice game written in Vanilla JavaScript, using Node.js/express backend.
 Roll the dice and click the ones you wish to keep. Clicked dice will move to "keep" area and you can also click them back to the "roll" area.
 After 3 rolls the button is disabled and you need to choose your scoring option.
 
-Rules:
+Rules: \
 *https://en.wikipedia.org/wiki/Yahtzee*
 
 In my home country, One pair and Two pair is also an option, so that was added :)
 
-<img src="https://user-images.githubusercontent.com/90894009/203942088-df196692-e0ed-42f2-9899-a7e3f6f5d024.png" width="200" />
+<img src="https://user-images.githubusercontent.com/90894009/203942088-df196692-e0ed-42f2-9899-a7e3f6f5d024.png" width="500" />
 
+## Dev
 
-![Screenshot 2022-11-25 at 09 59 08](https://user-images.githubusercontent.com/90894009/203942088-df196692-e0ed-42f2-9899-a7e3f6f5d024.png)
+If you are brave enough to try out the Dev branch you will also find scoring tips. The dice are evaluated and suggestions are made when a fitting combination occurs. Only implemented for lower score.
+
+<img src="https://user-images.githubusercontent.com/90894009/203974323-f731a0ea-bbef-468a-b191-5b4c40e5bf41.png" width="500" />
