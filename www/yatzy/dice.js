@@ -8,8 +8,8 @@ document.getElementById('roll-btn').addEventListener('click', (e) => {
 })
 
 document.getElementById('roll-dice').addEventListener('click', (event) => {
-    //block dice from being moved before and during roll
-    if(rollsLeft == 3 || rolling){
+    //block dice from being moved before roll
+    if(rollsLeft == 3){
         return
     }
     moveDie(event, 'keep-dice')
@@ -22,7 +22,7 @@ document.getElementById('keep-dice').addEventListener('click', (event) => {
 
 function moveDie(event, location){
     let clickedBox = event.target.closest('.die-box')
-    if(!clickedBox){
+    if(!clickedBox || rolling){
         return
     }
     let id = clickedBox.getAttribute('id')
