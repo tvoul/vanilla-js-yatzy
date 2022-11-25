@@ -24,7 +24,7 @@ export function evaluate(){
 
     if(occurence != 3){
         let tempScore = onePair()
-        if(maxScore <= tempScore && !document.getElementById('One pair').querySelector('td:nth-child(1) > button').disabled){
+        if(maxScore > 0 && maxScore <= tempScore && !document.getElementById('One pair').querySelector('td:nth-child(1) > button').disabled){
             suggestedChoice = 'One pair'
         }
         tempScore = twoPair()
@@ -36,7 +36,8 @@ export function evaluate(){
             suggestedChoice = '3 of a kind'
         }
         tempScore = fourKind()
-        if(maxScore <= tempScore  && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
+        if(maxScore > 0 && maxScore <= tempScore  && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
+            console.log(maxScore, tempScore)
             suggestedChoice = '4 of a kind'
         }
         tempScore = straight('Small straight')
