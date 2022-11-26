@@ -22,4 +22,4 @@ The dice are evaluated and suggestions are made. It will prioritize the upper se
 \
 *Note that this is not a strategically optimal way to play, just suggestions.*
 
-<img src="https://user-images.githubusercontent.com/90894009/203974323-f731a0ea-bbef-468a-b191-5b4c40e5bf41.png" width="500" />
+<img src="https://user-images.githubusercontent.com/90894009/204091401-c2423bc1-bb85-4fe1-8cbe-d93ecde3e37e.PNG" width="500" />
