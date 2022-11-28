@@ -66,9 +66,9 @@ async function rollDice(){
         }
     }
 
-    // manipulated die prep for testing
+    //manipulated die prep for testing
     // for (let x = 0; x < 4; x++){
-    //     let values = [2,2,2,1,4]
+    //     let values = [2,2,2,4,4]
     //     for(let i = 0; i < dice.children.length;i++){
     //         let value = values[i]
     //         document.getElementById(dice.children[i].id).innerHTML = value
@@ -102,4 +102,8 @@ export async function resetRoll(ms){
     document.getElementById('roll-btn').disabled = false
     document.getElementById('roll-num').innerHTML = 'Rolls left: ' + rollsLeft
     resetDie()
+}
+
+export function getRollsLeft(){
+    return rollsLeft
 }
