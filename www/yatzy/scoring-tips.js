@@ -49,7 +49,7 @@ export function evaluate(){
             suggestedChoice = 'Large straight'
         }
         tempScore = fullHouse()
-        if(maxScore < tempScore  && !document.getElementById('Full house').querySelector('td:nth-child(1) > button').disabled){
+        if(maxScore > 0 && maxScore <= tempScore  && !document.getElementById('Full house').querySelector('td:nth-child(1) > button').disabled){
             suggestedChoice = 'Full house'
         }
         tempScore = yahtzee()
