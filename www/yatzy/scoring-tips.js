@@ -40,7 +40,7 @@ export function evaluate(){
         suggestedChoice = 'Two pair'
     }
     tempScore = fourKind()
-    if(maxScore > 0 && maxScore <= tempScore  && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
+    if(tempScore > 0 && maxScore <= tempScore  && !document.getElementById('4 of a kind').querySelector('td:nth-child(1) > button').disabled){
         suggestedChoice = '4 of a kind'
     }
     tempScore = straight('Small straight')
